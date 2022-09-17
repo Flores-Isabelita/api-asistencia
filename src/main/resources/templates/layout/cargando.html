@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cargando</title>
+</head>
+
+<body>
+    <section th:fragment="cargando">
+        <div class="modal" id="cargando">
+            <div class="modal-dialog text-center">
+
+                    <!-- Modal Header -->
+
+
+                    <!-- Modal body -->
+                            <i class="spinner-grow text-success text-center p-3" style=" color: green; width: 10rem; height: 10rem;"></i>
+                            <h6 class="text-center" style="color: green">Cargando...</h6>
+
+                    <!-- Modal footer -->
+        </div>
+        </div>
+    </section>
+</body>
+
+<div class="card">
+    <div class="card-header ">
+      <h4 class="modal-title text-center">Control Asistencia</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <div class="card-body">
+      <form th:action="@{/guardar}" th:object="${persona}" method="POST" class="was-validated">
+        <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+        <textarea class="form-control" required="true" placeholder="Observaciones"></textarea>
+        <div class="py-2 ">
+          <input name="nombre" required="true" type="submit" class="btn btn-success float-right" value="Enviar" />
+        </div>
+      </form>
+    </div>
+
+ 
+
+  </div>
+</div>
+
+</html>

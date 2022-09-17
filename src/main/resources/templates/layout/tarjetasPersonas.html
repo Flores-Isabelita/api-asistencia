@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tarjetas Personas</title>
+</head>
+
+<body>
+    <section th:fragment="tarjetasPersonas">
+        <div class="container">
+            <div class="row">
+
+
+
+                <div class="col-md-9">
+                    <div class="col-md-9">
+
+                        <div th:fragment="models" class="card text-center bg-info text-white mb-3 mt-3 sombraSensilla sticky-top">
+                            <div class="card-body ">
+                                <h3 th:text="#{persona.totalPersonas}">Total Personas</h3>
+                                <h4 class="display-4">
+                                    <i class="fas fa-users"></i> <strong>[[${totalPersonas}]]</strong>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div th:fragment="models" class="card text-center bg-success text-white mb-3 mt-3 sombraSensilla sticky-top">
+                            <div class="card-body ">
+                                <h3 text="Personas Presentes">Personas Presentes</h3>
+                                <h4 class="display-4">
+                                    <i class="fas fa-users mb-3"></i> <strong>[[${personasPresentes}]]</strong>
+                                </h4>
+                                <strong class="alert alert-success p-1">[[${PorcentajePresentes}]] %</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div th:fragment="models" class="card text-center bg-danger  text-white mb-3 mt-3 sombraSensilla sticky-top">
+                            <div class="card-body ">
+                                <h3 text="Personas Ausentes">Personas Ausentes</h3>
+                                <h4 class="display-4">
+                                    <i class="fas fa-users mb-3"></i> <strong>[[${personasAusentes}]]</strong>
+                                </h4>
+                                <strong class="alert alert-danger p-1">[[${PorcentajeAusentes}]] %</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div th:fragment="models" class="card text-center bg-secondary text-white mb-3 mt-3 sombraSensilla sticky-top">
+                            <div class="card-body ">
+                                <h3 text="Personas sin Asistencia">Personas Sin Validar</h3>
+                                <h4 class="display-4">
+                                    <i class="fas fa-users mb-3"></i> <strong>[[${personasSinValidar}]]</strong>
+                                </h4>
+                                <strong class="alert alert-secondary p-1">[[${PorcentajeSinValidar}]] %</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 ml-md-auto" >
+                    <div class="card mt-3 sombraSensilla2 ml-md-auto" style="width: 22rem; margin: 0 auto">
+                        <img class="card-img-top" src="/images/lupa.svg" alt="Card image cap">
+                        <div class="card-body">
+                        <p class="card-text text-center">El precio de la grandeza es la responsabilidad...</p>
+                        </div>
+                    </div>
+            </div>
+            </div>
+                    
+            </div>
+        </div>
+        
+    </section>
+</body>
+
+</html>

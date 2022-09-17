@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Colap</title>
+</head>
+
+<body>
+    <section th:fragment="colap">
+        <div id="colap" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-info text-white">
+                        <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Cliente</h5>
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{/guardar}" th:object="${persona}" method="POST" class="was-validated">
+                        <div class="modal-body">
+                        
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</section>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#test").click(function () {
+            $.post("/api/guardar", function (datos) {
+                $("#resualtado").html(datos);
+            });
+        });
+    });
+</script>
+                                            <!--
+                                            <input type="hidden" name="idPersona" th:value="*{idPersona}">
+                                            -->
+<script>
+    function enviar() {
+        var datos = { idPersona: "[[${persona.idPersona}]]", idEmpresa: "[[${persona.idEmpresa}]]", nombre: "[[${persona.nombre}]]", cedula: "[[${persona.cedula}]]", proceso: "[[${persona.proceso}]]", observaciones: "[[${persona.observaciones}]]", estado: "Ausente" };
+        var dato = $('#formulario').serialize();
+
+        alert($.param(datos));
+        $.ajax({
+            data: dato,
+            type: 'POST',
+            url: '/api/guardar'
+
+        });
+        return false
+    }
+</script>
+
+<script>
+    $("[[${persona.idPersona}]]").on("radio", function (event) {
+        event.preventDefault();
+        alert($(this).serialize());
+        alert("HOLA");
+    });
+</script>
+
+
+<form id="fProceso" th:action="@{/listar}" method="post" class="float-right">
+    <div class="form-group">
+        <select class="form-control" id="proceso" name="proceso" onchange="cambio()"
+            target="lista">
+            <option th:each="proceso:${procesos}" th:text="${proceso}" name="seleccion">
+            </option>
+        </select>
+        
+    </div>
+</form>
+
+<script>
+    function cambio() {
+        d = document.getElementById("proceso").value;
+        $.ajax({
+            data: $("#fProceso").serialize(),
+            type: 'POST',
+            url: '/listar'
+        });
+
+        $('#lista').load(' #lista');
+
+
+    }
+</script>
+
+
+
+
+<div class="col-md-9">
+    <div class="col-md-9">
+        <div th:fragment="models" class="card text-center mb-3 mt-3 sticky-top">
+            <div class="card-body ">
+                <img src="../util/Diversity _Isometric.svg" alt="si">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+Celular: [[${persona.celular}]]
+<a sec:authorize="hasRole('ROLE_ADMIN')"
+    th:href="@{https://api.whatsapp.com/send?phone=57} + ${persona.celular}"
+    class="btn btn-outline-success pt-0 pb-0  rounded-circle"
+    target="blank">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+
+</html>

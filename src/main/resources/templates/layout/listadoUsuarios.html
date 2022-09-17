@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista</title>
+</head>
+
+<body>
+    <section th:fragment="listadoUsuarios">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="card table-responsive  mt-3">
+                        <div class="card-header ">
+                            <h4>Lista de Usuarios</h4>
+                        </div>
+                        <div class="">
+                            <table class="table">
+                                <thead class="barra text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th th:text="#{persona.nombre}">Nombre</th>
+                                        <th text="Password Encriptado">Password (Encriptado)</th>
+                                        <th text="Password Encriptado">Rol</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="usuario, contador : ${usuarios}">
+                                        <td>[[${contador.count}]]</td>
+                                        <td>[[${usuario.username}]]</td>
+                                        <td>[[${usuario.password}]]</td>
+                                        <td>[[${usuario.roles}]]</td>
+                                        <td>
+                                            <a sec:authorize="hasRole('ROLE_ADMIN')"
+                                                th:href="@{/eliminar(idUsuario=${usuario.idUsuario})}"
+                                                class="btn btn-danger btn-sm pt-0 pb-0">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

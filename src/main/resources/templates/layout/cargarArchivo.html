@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Cargar Datos</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <section th:fragment="cargarArchivo">
+    <div class="modal" id="cargarArchivo">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header barra">
+              <h4 class="modal-title text-white">Cargue el listado del personal activo</h4>
+              <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form th:action="@{/upload}" method="POST" enctype="multipart/form-data" class="was-validated">
+                    <div class="form-gorup">
+                        <input type="file" name="file" accept=".xls" class="form-control" required="true">
+                    </div>
+                    <div class="py-2 text-right">
+                        <input type="submit" class="btn btn-success " data-toggle="modal" value="Actualizar" data-target="#cargando"/>
+                    </div>
+              </form>
+            </div>
+            
+            <!-- Modal footer -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+</body>
+
+</html>
