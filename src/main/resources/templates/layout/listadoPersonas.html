@@ -11,7 +11,7 @@
     <section th:fragment="listadoPersonas" id="personas">
         <div class="container mt-3">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9 col-xs-12">
                     <div class="card border-0">
                         <div th:if="${palabraClave != null and !palabraClave.empty}" class="card-header barra">
                             <h5 class="float-left text-white ">[[${palabraClave}]]</h5>
@@ -113,7 +113,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-xs-12">
                     <div class="sticky-top">
                     <div th:if="${palabraClave != null and !palabraClave.empty}" class="barra">
                         <h5 class="float-left text-center">[[${palabraClave}]]</h5>
