@@ -18,11 +18,26 @@
     font-size: 2.5vh
 }
 
-/*
-.rescard {
+.ressubtitle{
     font-size: 2vh
 }
-*/
+
+
+.rescard {
+    font-size: 1.8vh
+}
+
 .restarj {
     font-size: 4vh
 }
+/*
+.res{
+    font-size: 1.8vh
+}
+
+@media only screen and (min-width:360px) and (max-width:720px) {
+    .res{
+        font-size: 2vh
+    }
+}
+*/

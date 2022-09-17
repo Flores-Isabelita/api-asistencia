@@ -12,7 +12,7 @@
         <div class="container-fluid container-lg">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                        <div th:fragment="models" class="card text-center bg-info text-white mb-3 mt-3 sombraSensilla">
+                        <div th:fragment="models" class="card text-center bg-info text-white mx-5 my-5 mx-lg-0 my-lg-3  sombraSensilla">
                             <div class="card-body ">
                                 <h3 class="restarj" th:text="#{persona.totalPersonas}">Total Personas</h3>
                                 <h4 class="restarj display-4">
@@ -20,37 +20,37 @@
                                 </h4>
                             </div>
                         </div>
-                        <div th:fragment="models" class="card text-center bg-success text-white mb-3 mt-3 sombraSensilla">
+                        <div th:fragment="models" class="card text-center bg-success text-white mx-5 my-5 mx-lg-0 my-lg-3 sombraSensilla">
                             <div class="card-body ">
                                 <h3 class="restarj pb-3" text="Personas Presentes">Personas Presentes</h3>
                                 <h4 class="restarj display-4">
-                                    <i class="fas fa-users mb-3"></i><strong class="alert alert-success p-1 ml-2">[[${PorcentajePresentes}]] %</strong>
+                                    <i class="fas fa-users mb-3"></i> <strong class="restitle ml-2">[[${personasPresentes}]]</strong>
                                 </h4>
                                 <h4>
-                                    <strong class="restitle">[[${personasPresentes}]]</strong>
+                                    <strong class="alert alert-success p-1">[[${PorcentajePresentes}]] %</strong>
                                 </h4>
 
                             </div>
                     </div>
-                        <div th:fragment="models" class="card text-center bg-danger  text-white mb-3 mt-3 sombraSensilla">
+                        <div th:fragment="models" class="card text-center bg-danger  text-white mx-5 my-5 mx-lg-0 my-lg-3 sombraSensilla">
                             <div class="card-body ">
                                 <h3 class="restarj pb-3" text="Personas Ausentes">Personas Ausentes</h3>
                                 <h4 class="restarj display-4">
-                                    <i class="fas fa-users mb-3"></i><strong class="alert alert-danger p-1 ml-2">[[${PorcentajeAusentes}]] %</strong>
+                                    <i class="fas fa-users mb-3"></i><strong class="restitle ml-2">[[${personasAusentes}]]</strong>
                                 </h4>
                                 <h4>
-                                    <strong class="restitle">[[${personasAusentes}]]</strong>
+                                    <strong class="alert alert-danger p-1">[[${PorcentajeAusentes}]] %</strong>
                                 </h4>
                             </div>
                     </div>
-                        <div th:fragment="models" class="card text-center bg-secondary text-white mb-3 mt-3 sombraSensilla">
+                        <div th:fragment="models" class="card text-center bg-secondary text-white mx-5 my-5 mx-lg-0 my-lg-3 sombraSensilla">
                             <div class="card-body ">
                                 <h3 class="restarj pb-3" text="Personas sin Asistencia">Personas Sin Validar</h3>
                                 <h4 class="restarj display-4">
-                                    <i class="fas fa-users mb-3"></i><strong class="alert alert-secondary p-1 ml-2">[[${PorcentajeSinValidar}]] %</strong>
+                                    <i class="fas fa-users mb-3"></i><strong class="restitle ml-2">[[${personasSinValidar}]]</strong>
                                 </h4>
                                 <h4>
-                                    <strong class="restitle">[[${personasSinValidar}]]</strong>
+                                    <strong class="alert alert-secondary p-1">[[${PorcentajeSinValidar}]] %</strong>
                                 </h4>
                             </div>
                         </div>

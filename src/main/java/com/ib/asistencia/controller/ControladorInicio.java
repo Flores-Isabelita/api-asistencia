@@ -41,7 +41,7 @@ public class ControladorInicio {
     @Autowired
     private PersonaService personaService;
 
-   
+    
     @RequestMapping("/")
     public String inicio(Model model, @Param("palabraClave") String palabraClave, @AuthenticationPrincipal User user) {
         var personas = personaService.listarPersonas(palabraClave);
