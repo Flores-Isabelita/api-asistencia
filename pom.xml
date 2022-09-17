@@ -123,7 +123,6 @@
 								<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
 								<java.source>${maven.compiler.source}</java.source>
 								<java.target>${maven.compiler.target}</java.target>
-
 							</additionalProperties>
 						</configuration>
 					</execution>
