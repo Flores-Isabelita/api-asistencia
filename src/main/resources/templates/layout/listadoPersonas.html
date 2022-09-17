@@ -14,7 +14,7 @@
                 <div class="col-12 col-lg-9">
                     <div class="card border-0">
                         <div th:if="${palabraClave != null and !palabraClave.empty}" class="card-header barra">
-                            <h5 class="float-left text-white ">[[${palabraClave}]]</h5>
+                            <h5 class="res float-left text-white ">[[${palabraClave}]]</h5>
                         </div>
                         <iframe name="request" style="display: none"></iframe>
 
@@ -23,7 +23,7 @@
                                 th:if="${personas != null and !personas.empty and palabraClave != null and !palabraClave.empty}">
                                 <div th:each="persona, contador : ${personas}">
                                     <div id="accordion">
-                                        <div class="card mb-3 border sombraSensilla2">
+                                        <div class="rescard card mb-3 border sombraSensilla2">
                                             <div class="card-header">
                                                 <div>
                                                     <button id="nombre" class="pb-1 pt-1 border-0 "
@@ -31,7 +31,7 @@
                                                         data-toggle="collapse" th:href="@{#} + ${persona.idPersona}">
                                                         <i class="fa-solid fa-address-card"></i>
                                                     </button>
-                                                    <strong>[[${persona.nombre}]]</strong> 
+                                                    <strong>[[${persona.nombre}]]</strong>
                                                 </div>
                                             </div>
                                             <div th:id="${persona.idPersona}" class="collapse-show" data-parent="#accordion">
@@ -69,14 +69,14 @@
                                                     <div class="btn-group btn-group-toggle float-right rounded"
                                                         data-toggle="buttons"
                                                         style="background-color: rgba(166, 211, 166, 0.349)">
-                                                        <label class="btn btn-outline-primary" name="estado">
+                                                        <label class="rescard  btn btn-outline-primary" name="estado">
                                                             <input class="text-black" type="radio" name="estado"
                                                                 value="Presente" autocomplete="off"
                                                                 onclick="this.form.submit()">
                                                             Presente
                                                         </label>
 
-                                                        <label class="btn btn-outline-secondary" name="estado">
+                                                        <label class="rescard btn btn-outline-secondary" name="estado">
                                                             <input class="text-black" type="radio" name="estado"
                                                                 value="Ausente" autocomplete="off"
                                                                 onclick="this.form.submit()">
@@ -96,14 +96,14 @@
                         </div>
                         <div class="text-center"
                             th:if="${personas == null or personas.empty or palabraClave == null or palabraClave.empty}">
-                            <img class="rounded" 
+                            <img class="rounded"
                                         src="/images/Diversity _Isometric (1).svg" alt="">
-                                        <h4>¿Qué equipo lideras?</h4>            
+                                    <h4>¿Qué equipo lideras?</h4>
                         </div>
                     </div>
                     <br>
                     <form th:action="@{/}" method="post">
-                        <div class="form-group">
+                        <div class="res form-group">
                             <select id="palabraClave" name="palabraClave" class="form-control"
                                 th:value="${palabraClave}" onchange="this.form.submit()">
                                 <option disabled="disabled" selected="true">Selecciona tu equipo...</option>
@@ -115,14 +115,13 @@
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="sticky-top">
-                    <div th:if="${palabraClave != null and !palabraClave.empty}" class="barra">
-                        <h5 class="float-left text-center">[[${palabraClave}]]</h5>
+                    <div th:if="${palabraClave != null and !palabraClave.empty}" class="flex mt-3">
+                        <h5 class="res text-center">[[${palabraClave}]]</h5>
                     </div>
-                        <br>
                     <div th:fragment="models" class="card text-center bg-primary text-white mb-3 mt-3 ">
                         <div class="card-body sombraSensilla">
-                            <h4 th:text="#{persona.totalPersonas}">Total Personas</h4>
-                            <h4 class="display-5">
+                            <h4 class="restarj" th:text="#{persona.totalPersonas}">Total Personas</h4>
+                            <h4 class="restarj display-5">
                                 <i class="fas fa-users"></i> [[${totalPersonas}]]
                             </h4>
                         </div>
