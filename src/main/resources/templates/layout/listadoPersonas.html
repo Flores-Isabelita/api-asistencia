@@ -103,8 +103,8 @@
                     </div>
                     <br>
                     <form th:action="@{/}" method="post">
-                        <div class="res form-group">
-                            <select id="palabraClave" name="palabraClave" class="form-control"
+                        <div class="form-group">
+                            <select id="palabraClave" name="palabraClave" class="res form-control"
                                 th:value="${palabraClave}" onchange="this.form.submit()">
                                 <option disabled="disabled" selected="true">Selecciona tu equipo...</option>
                                 <option th:each="proceso:${procesos}" th:text="${proceso}">

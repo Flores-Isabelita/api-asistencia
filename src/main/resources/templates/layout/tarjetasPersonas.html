@@ -18,49 +18,49 @@
                                 <h4 class="restarj display-4">
                                     <i class="fas fa-users"></i> <strong>[[${totalPersonas}]]</strong>
                                 </h4>
-                             </div>
-                         </div>
+                            </div>
+                        </div>
                         <div th:fragment="models" class="card text-center bg-success text-white mb-3 mt-3 sombraSensilla">
                             <div class="card-body ">
-                                <h3 class="restarj" text="Personas Presentes">Personas Presentes</h3>
+                                <h3 class="restarj pb-3" text="Personas Presentes">Personas Presentes</h3>
                                 <h4 class="restarj display-4">
-                                    <i class="fas fa-users mb-3"></i> <strong>[[${personasPresentes}]]</strong>
+                                    <i class="fas fa-users mb-3"></i><strong class="alert alert-success p-1 ml-2">[[${PorcentajePresentes}]] %</strong>
                                 </h4>
                                 <h4>
-                                    <strong class="alert alert-success p-1">[[${PorcentajePresentes}]] %</strong>
+                                    <strong class="restitle">[[${personasPresentes}]]</strong>
                                 </h4>
 
                             </div>
                     </div>
                         <div th:fragment="models" class="card text-center bg-danger  text-white mb-3 mt-3 sombraSensilla">
                             <div class="card-body ">
-                                <h3 class="restarj" text="Personas Ausentes">Personas Ausentes</h3>
+                                <h3 class="restarj pb-3" text="Personas Ausentes">Personas Ausentes</h3>
                                 <h4 class="restarj display-4">
-                                    <i class="fas fa-users mb-3"></i> <strong>[[${personasAusentes}]]</strong>
+                                    <i class="fas fa-users mb-3"></i><strong class="alert alert-danger p-1 ml-2">[[${PorcentajeAusentes}]] %</strong>
                                 </h4>
                                 <h4>
-                                <strong class="alert alert-danger p-1">[[${PorcentajeAusentes}]] %</strong>
+                                    <strong class="restitle">[[${personasAusentes}]]</strong>
                                 </h4>
                             </div>
                     </div>
                         <div th:fragment="models" class="card text-center bg-secondary text-white mb-3 mt-3 sombraSensilla">
                             <div class="card-body ">
-                                <h3 class="restarj" text="Personas sin Asistencia">Personas Sin Validar</h3>
+                                <h3 class="restarj pb-3" text="Personas sin Asistencia">Personas Sin Validar</h3>
                                 <h4 class="restarj display-4">
-                                    <i class="fas fa-users mb-3"></i> <strong>[[${personasSinValidar}]]</strong>
+                                    <i class="fas fa-users mb-3"></i><strong class="alert alert-secondary p-1 ml-2">[[${PorcentajeSinValidar}]] %</strong>
                                 </h4>
                                 <h4>
-                                <strong class="alert alert-secondary p-1">[[${PorcentajeSinValidar}]] %</strong>
+                                    <strong class="restitle">[[${personasSinValidar}]]</strong>
                                 </h4>
                             </div>
                         </div>
                 </div>
                 
                 <div class="col-12 col-lg-3 ml-lg-auto" >
-                    <div class="card mt-3 sombraSensilla2 ml-md-auto" style="width: 17em; margin: 0 auto">
+                    <div class="card mt-3 sombraSensilla2 ml-md-auto" style="width: 18em; margin: 0 auto">
                         <img class="card-img-top" src="/images/lupa.svg" alt="Card image cap">
                         <div class="card-body">
-                        <p class="card-text text-center">El precio de la grandeza es la responsabilidad...</p>
+                        <p class="card-text text-center text">El precio de la grandeza es la responsabilidad...</p>
                         </div>
                     </div>
             </div>
