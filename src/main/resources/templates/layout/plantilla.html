@@ -19,9 +19,9 @@
         <nav class="restitle navbar navbar-expand-lg navbar-dark p-0 sombraSensilla2 barra sticky-top " >
             <div class="container">
                 <span class="restitle2 navbar-brand ml-1">
-                    <span sec:authentication="name">Usuario</span>
+                    <span sec:authorize="isAuthenticated()" sec:authentication="name">Usuario</span>
                 </span>
-                <button class="restitle2 navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <button sec:authorize="isAuthenticated()" class="restitle2 navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarCollapse">

@@ -13,9 +13,10 @@
             <div class="row">
                 <div class="col-12 col-lg-9">
                     <div class="card border-0">
-                        <div th:if="${palabraClave != null and !palabraClave.empty}" class="card-header barra">
-                            <h5 class="ressubtitle float-left text-white ">[[${palabraClave}]]</h5>
+                        <div th:if="${palabraClave != null and !palabraClave.empty}" class="flex mt-3">
+                            <h5 class="restitle text-center">[[${palabraClave}]]</h5>
                         </div>
+
                         <iframe name="request" style="display: none"></iframe>
 
                         <div id="lista" name="lista">
