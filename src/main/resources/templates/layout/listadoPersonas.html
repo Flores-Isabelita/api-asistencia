@@ -14,7 +14,7 @@
                 <div class="col-12 col-lg-9">
                     <div class="card border-0">
                         <div th:if="${palabraClave != null and !palabraClave.empty}" class="flex mt-3">
-                            <h5 class="restitle text-center">[[${palabraClave}]]</h5>
+                            <h5 class="restitle2 text-center">[[${palabraClave}]]</h5>
                         </div>
 
                         <iframe name="request" style="display: none"></iframe>
@@ -50,12 +50,12 @@
                                                     <strong>Celular:</strong> [[${persona.celular}]]
                                                     <a sec:authorize="hasRole('ROLE_ADMIN')"
                                                         th:href="@{https://api.whatsapp.com/send?phone=57} + ${persona.celular}"
-                                                        class="btn btn-outline-info pt-0 pb-0  rounded-circle"
+                                                        class="btn  pt-0 pb-0  rounded-circle"
                                                         target="blank">
                                                         <!--
                                                         <img src="/images/wsp3.png" width="30" height="30" alt=""> 
                                                         -->
-                                                        <img src="/images/wsp.png" width="35" height="35">
+                                                        <img src="/images/wsp.png" width="55">
                                                     </a>
                                                 </div>
                                                 <br>
@@ -84,7 +84,7 @@
                                                             Ausente
                                                         </label>
                                                     </div>
-                                                    <div class="float-left">
+                                                    <div class="restitle2 float-left">
                                                         <input type="text" name="observaciones"
                                                             placeholder="Observaciones">
                                                     </div>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <br>
-                    <form th:action="@{/}" method="post">
+                    <form th:action="@{/}" method="post" class="mx-5 my-5 mx-lg-0 my-lg-3">
                         <div class="form-group">
                             <select id="palabraClave" name="palabraClave" class="ressubtitle form-control"
                                 th:value="${palabraClave}" onchange="this.form.submit()">
@@ -117,9 +117,9 @@
                 <div class="col-12 col-lg-3">
                     <div class="sticky-top">
                     <div th:if="${palabraClave != null and !palabraClave.empty}" class="flex mt-3">
-                        <h5 class="restitle text-center">[[${palabraClave}]]</h5>
+                        <h5 class="restitle2 text-center">[[${palabraClave}]]</h5>
                     </div>
-                    <div th:fragment="models" class="card text-center bg-primary text-white mb-3 mt-3 ">
+                    <div th:fragment="models" class="card mx-5 my-5 mx-lg-0 my-lg-3 text-center bg-primary text-white">
                         <div class="card-body sombraSensilla">
                             <h4 class="restarj" th:text="#{persona.totalPersonas}">Total Personas</h4>
                             <h4 class="restarj display-5">

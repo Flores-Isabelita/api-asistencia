@@ -9,28 +9,29 @@
 
 <body>
     <section th:fragment="agregarUsuario">
+        <div class="container-fluid">
         <div id="agregarUsuario" class="modal fade">
-            <div class="modal-dialog modal-lg">
+            <div class="rescard modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header text-white barra">
-                        <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Cliente</h5>
+                        <h5 class="rescard modal-title" th:text="#{accion.agregar}">Agregar Cliente</h5>
                         <button class="close" data-dismiss="modal">
-                            <span>&times;</span>
+                            <span class="rescard text-white">&times;</span>
                         </button>
                     </div>
                     <form th:action="@{/agregar}" th:object="${usuario}" method="POST" class="was-validated">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="username" th:text="#{persona.nombre}">Nombre</label>
-                                <input type="text" class="form-control" name="username" required="true">
+                                <input type="text" class="rescard form-control" name="username" required="true">
                             </div>
                             <div class="form-group">
                                 <label for="password" th:text="Contraseña">Contraseña</label>
-                                <input type="text" class="form-control" name="password" required="true">
+                                <input type="text" class="rescard form-control" name="password" required="true">
                             </div>
                             <div class="form-group">
                                 <label for="roles" text="Rol">Rol</label>
-                                <select name="roles" class="form-control" required="true">
+                                <select name="roles" class="rescard form-control" required="true">
                                 <option text="ROLE_USER">ROLE_USER</option>
                                 <option text="ROLE_ADMIN">ROLE_ADMIN</option>
                             </select>
@@ -38,12 +39,13 @@
                             
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            <button class="rescard btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
 </body>
