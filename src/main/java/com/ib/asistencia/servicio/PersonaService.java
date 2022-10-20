@@ -7,7 +7,7 @@ public interface PersonaService {
     
     public List<Persona> listarPersonas(String palabraClave);
     
-    public void guardar(Persona persona);
+    public Persona guardar(Persona persona);
  
     public Persona encontrarPersona(Persona persona);
 
