@@ -9,6 +9,6 @@ public interface PersonaService {
     
     public Persona guardar(Persona persona);
  
-    public Persona encontrarPersona(Persona persona);
+    public Persona encontrarPersona(String id);
 
 }

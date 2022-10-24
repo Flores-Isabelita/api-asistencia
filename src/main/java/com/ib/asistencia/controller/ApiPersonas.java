@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/personas")
 public class ApiPersonas {
@@ -25,4 +26,10 @@ public class ApiPersonas {
         return this.personaService.guardar(persona);
     }
 
+    @PutMapping("{idPersona}")
+    public Persona upDatePerson(@PathVariable String idPersona, @RequestBody Persona persona){
+        Persona personaFrontDb = personaService.encontrarPersona(idPersona);
+        personaFrontDb.setObservaciones(persona.getObservaciones());
+        return personaService.guardar(personaFrontDb);
+    }
 }

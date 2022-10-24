@@ -24,13 +24,13 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     @Transactional
-    public void guardar(Persona persona) {
-        personaDao.save(persona);
+    public Persona guardar(Persona persona) {
+        return personaDao.save(persona);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Persona encontrarPersona(Persona persona) {
-        return personaDao.findById(persona.getIdPersona()).orElse(null);
+    public Persona encontrarPersona(String id) {
+        return personaDao.findById(Long.valueOf(id)).orElse(null);
     }
 }
