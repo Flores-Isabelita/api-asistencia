@@ -21,15 +21,20 @@ public class ApiPersonas {
         return (ArrayList<Persona>) personaService.listarPersonas(palabraClave);
     }
 
-    @PostMapping("")
-    public Persona guardarPersona(@RequestBody Persona persona){
-        return this.personaService.guardar(persona);
-    }
-
-    @PutMapping("{idPersona}")
-    public Persona upDatePerson(@PathVariable String idPersona, @RequestBody Persona persona){
+    @GetMapping("{idPersona}")
+    Persona upDatePerson(@PathVariable String idPersona, @RequestBody Persona persona){
         Persona personaFrontDb = personaService.encontrarPersona(idPersona);
         personaFrontDb.setObservaciones(persona.getObservaciones());
         return personaService.guardar(personaFrontDb);
+    }
+
+    @PostMapping("")
+    public Persona guardarPersona(@RequestBody Persona persona){
+        return personaService.guardar(persona);
+    }
+
+    @GetMapping("n")
+    public ArrayList<Persona> listarPersonas2(String palabraClave){
+        return (ArrayList<Persona>) personaService.listarPersonas(palabraClave);
     }
 }
