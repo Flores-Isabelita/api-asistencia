@@ -3,6 +3,7 @@ package com.ib.asistencia.controller;
 
 import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.servicio.PersonaService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,8 @@ public class ApiPersonas {
         return (ArrayList<Persona>) personaService.listarPersonas(palabraClave);
     }
 
-    @GetMapping("{idPersona}")
-    Persona upDatePerson(@PathVariable String idPersona, @RequestBody Persona persona){
+    @PutMapping("{idPersona}")
+    Persona upDatePerson(@PathVariable String idPersona, @RequestBody @NotNull Persona persona){
         Persona personaFrontDb = personaService.encontrarPersona(idPersona);
         personaFrontDb.setObservaciones(persona.getObservaciones());
         return personaService.guardar(personaFrontDb);
