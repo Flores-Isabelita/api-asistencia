@@ -1,35 +1,31 @@
 package com.ib.asistencia.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import com.ib.asistencia.domain.Usuario;
 import com.ib.asistencia.servicio.UsuarioService;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@Slf4j
-public class LoginController {
+import java.util.List;
 
+import javax.validation.Valid;
+
+@CrossOrigin
+@RestController
+@RequestMapping("/usuarios")
+public class ApiUsuarios {
 
     @Autowired
     private UsuarioService usuarioService;
 
 
-    @GetMapping("/usuarios1")
-    public String usuarios(Usuario usuario, Model model, @AuthenticationPrincipal User user){
+    @GetMapping("")
+    public List<Usuario> usuarios(Usuario usuario){
         var usuarios = usuarioService.listarUsuarios();
-        model.addAttribute("usuarios", usuarios);
-        return "usuarios";
+        return usuarios;
     }
 
     @PostMapping("/agregar")
@@ -47,5 +43,9 @@ public class LoginController {
         usuarioService.eliminar(usuario);
         return "redirect:/usuarios";
     }
+
+
+
+
     
 }
