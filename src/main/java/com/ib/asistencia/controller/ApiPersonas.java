@@ -34,8 +34,4 @@ public class ApiPersonas {
         return personaService.guardar(persona);
     }
 
-    @GetMapping("n")
-    public ArrayList<Persona> listarPersonas2(String palabraClave){
-        return (ArrayList<Persona>) personaService.listarPersonas(palabraClave);
-    }
 }
