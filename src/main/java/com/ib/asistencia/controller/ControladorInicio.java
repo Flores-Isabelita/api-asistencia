@@ -106,10 +106,10 @@ public class ControladorInicio {
         if(errores.hasErrors()){
             return "redirect:/";
         }
-        if ("Ausente".equals(persona.getEstado()) && persona.getObservaciones().isEmpty()) {
+        /*if ("Ausente".equals(persona.getEstado()) && persona.getObservaciones().isEmpty()) {
             persona.setObservaciones("Ausente");
         }
-            
+          */
         personaService.guardar(persona);
         return "redirect:/";
     }
@@ -121,6 +121,7 @@ public class ControladorInicio {
         var personasAusentes = 0;
         var personasSinValidar = personas.size();
         for (Persona personaActual : personas) {
+            /*
             if ("Presente".equals(personaActual.getEstado())) {
                 personasPresentes++;
                 personasSinValidar--;
@@ -129,6 +130,8 @@ public class ControladorInicio {
                 personasAusentes++;
                 personasSinValidar--;
             }
+
+             */
         }
         double  PorcentajeSinValidar = Double.valueOf((personasSinValidar) * 100) / Double.valueOf(personas.size());
         double  PorcentajeAusentes = Double.valueOf((personasAusentes) * 100) / Double.valueOf(personas.size());

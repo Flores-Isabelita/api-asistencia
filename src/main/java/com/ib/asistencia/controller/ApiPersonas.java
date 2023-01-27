@@ -25,7 +25,7 @@ public class ApiPersonas {
     @PutMapping("{idPersona}")
     Persona upDatePerson(@PathVariable String idPersona, @RequestBody @NotNull Persona persona){
         Persona personaFrontDb = personaService.encontrarPersona(idPersona);
-        personaFrontDb.setObservaciones(persona.getObservaciones());
+        //personaFrontDb.setObservaciones(persona.getObservaciones());
         return personaService.guardar(personaFrontDb);
     }
 
