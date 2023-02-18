@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ib.asistencia.dao.UsuarioDao;
+import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.domain.Rol;
 import com.ib.asistencia.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UsuarioServiceImpl implements UserDetailsService, UsuarioService{
 
-    @Autowired
-    public BCryptPasswordEncoder passwordEncoder;
+    //@Autowired
+   // public BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private UsuarioDao usuarioDao;
@@ -37,24 +38,30 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService{
         
         var roles = new ArrayList<GrantedAuthority>();
         
-        for(Rol rol: usuario.getRoles()){
-            roles.add(new SimpleGrantedAuthority(rol.getNombre()));
-        }
+       // for(Rol rol: usuario.getRoles()){
+         //   roles.add(new SimpleGrantedAuthority(rol.getNombre()));
+       // }
         
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }
 
     @Override
     @Transactional
-    public void agregar(Usuario usuario) {
-    usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        usuarioDao.save(usuario);
+    public Usuario guardar(Usuario usuario) {
+    //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        return usuarioDao.save(usuario);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> listarUsuarios() {
         return (List<Usuario>) usuarioDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public Usuario encontrarUsuario(String id) {
+        return usuarioDao.findByUsername(id);
     }
 
     @Override

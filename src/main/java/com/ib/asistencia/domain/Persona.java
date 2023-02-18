@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 @Data
@@ -14,12 +15,9 @@ public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPersona;
-
-    @NotEmpty
     @Column(name = "id_empresa")
-    private String idEmpresa;
+    private Long idEmpresa;
+
     @NotEmpty
     @Column(name = "nombre")
     private String nombre;
@@ -40,6 +38,12 @@ public class Persona implements Serializable {
     @Column(name = "labor")
     private String labor;
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @NotEmpty
+    @Column(name = "fecha_actualizacion")
+    private String fechaActualizacion;
+
+    //@JsonManagedReference
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     private List<Asistencia> asistencias;
 }

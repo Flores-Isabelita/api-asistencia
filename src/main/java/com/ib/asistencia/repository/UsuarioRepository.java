@@ -1,15 +1,14 @@
-package com.ib.asistencia.dao;
+package com.ib.asistencia.repository;
 
 import com.ib.asistencia.domain.Usuario;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UsuarioDao extends JpaRepository<Usuario, Long>{
-    public Usuario findByUsername(String username);
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Optional<Usuario> findOneByEmail(String email);
+
 }

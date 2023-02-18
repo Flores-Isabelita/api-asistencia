@@ -18,6 +18,8 @@ public class LeerExcel {
         String cedula = "";
         String celular = "";
         String proceso = "";
+        String labor = "";
+
         List<Persona> Personas = new ArrayList<Persona>();
         // String ruta2 = "C:\\Users\\daniel.guzman\\spring_upload_example\\Hoja.xlsx";
 
@@ -42,20 +44,24 @@ public class LeerExcel {
                                 idEmpresa = dato;
                                 contador++;
                                 break;
-                            case 2:
+                            case 8:
                                 nombre = dato;
                                 contador++;
                                 break;
-                            case 4:
+                            case 10:
                                 cedula = dato;
                                 contador++;
                                 break;
-                            case 19:
+                            case 26:
                                 celular = dato;
                                 contador++;
                                 break;
-                            case 37:
+                            case 43:
                                 proceso = dato;
+                                contador++;
+                                break;
+                            case 4:
+                                labor = dato;
                                 contador++;
                                 break;
                             default:
@@ -66,11 +72,12 @@ public class LeerExcel {
                     }
 
                     Persona persona = new Persona();
-                    persona.setIdEmpresa(idEmpresa);
+                    persona.setIdEmpresa(Long.valueOf(idEmpresa));
                     persona.setNombre(nombre);
                     persona.setCedula(cedula);
                     persona.setCelular(celular);
                     persona.setProceso(proceso);
+                    persona.setLabor(labor);
 
                     Personas.add(persona);
 

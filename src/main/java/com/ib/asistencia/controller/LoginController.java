@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ib.asistencia.domain.Usuario;
-import com.ib.asistencia.servicio.UsuarioService;
+//import com.ib.asistencia.servicio.UsuarioService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,10 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoginController {
 
-
+    /*
     @Autowired
     private UsuarioService usuarioService;
-
 
     @GetMapping("/usuarios1")
     public String usuarios(Usuario usuario, Model model, @AuthenticationPrincipal User user){
@@ -37,7 +36,7 @@ public class LoginController {
         if(errores.hasErrors()){
             return "usuarios";
         }
-        usuarioService.agregar(usuario);
+        usuarioService.guardar(usuario);
 
         return "redirect:/usuarios";
     }
@@ -47,5 +46,7 @@ public class LoginController {
         usuarioService.eliminar(usuario);
         return "redirect:/usuarios";
     }
+
+     */
     
 }

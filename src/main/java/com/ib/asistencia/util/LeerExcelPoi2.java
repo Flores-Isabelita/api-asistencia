@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class LeerExcel2 {
+public class LeerExcelPoi2 {
 
     public static List lectura(String ruta) {
         List cellRow = new ArrayList<>();

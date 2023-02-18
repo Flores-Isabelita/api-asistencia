@@ -1,11 +1,12 @@
 package com.ib.asistencia.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Data
 @Entity
@@ -20,15 +21,18 @@ public class Asistencia implements Serializable {
 
     @NotEmpty
     @Column(name = "fecha")
-    private LocalDate fecha;
+    private String fecha;
 
-    @NotEmpty
     @Column(name = "observacion")
     private String observacion;
 
-    @NotEmpty
-    @ManyToOne
-    @JoinColumn(name = "id_persona")
-    private Persona persona;
+    @Column(name = "estado")
+    private String estado;
 
+    //@JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "id_empresa")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+    private Persona persona;
 }
