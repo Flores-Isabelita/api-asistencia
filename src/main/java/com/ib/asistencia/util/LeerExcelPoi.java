@@ -28,7 +28,7 @@ public class LeerExcelPoi {
         List<Persona> Personas = new ArrayList<Persona>();
 
         //Abrir fichero de Excel
-        File f = new File("C:\\Users\\daniel.guzman\\Documents\\Activos.xlsx");
+        File f = new File(ruta);
         InputStream inp = new FileInputStream(f);
         Workbook wb = WorkbookFactory.create(inp);
         Sheet sheet = wb.getSheetAt(0);

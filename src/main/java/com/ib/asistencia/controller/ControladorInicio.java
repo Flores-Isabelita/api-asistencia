@@ -1,10 +1,5 @@
 package com.ib.asistencia.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,14 +18,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.apache.commons.math3.util.Precision;
 
 import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.servicio.PersonaService;
-import com.ib.asistencia.util.LeerExcel;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -68,38 +59,7 @@ public class ControladorInicio {
         return "index";
     }
 
-	@PostMapping("/upload")
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes attributes)
-            throws IOException {
 
-        if (file == null || file.isEmpty()) {
-            attributes.addFlashAttribute("message", "Por favor seleccione un archivo");
-            return "redirect:/";
-        }
-
-        StringBuilder builder = new StringBuilder();
-        builder.append(System.getProperty("user.home"));
-        builder.append(File.separator);
-        builder.append("spring_upload_example");
-        builder.append(File.separator);
-        builder.append(file.getOriginalFilename());
-
-        byte[] fileBytes = file.getBytes();
-        Path path = Paths.get(builder.toString());
-        Files.write(path, fileBytes);
-
-        attributes.addFlashAttribute("rutaArchivo", "[" + builder.toString() + "]");
-
-        LeerExcel leerExcel = new LeerExcel();
-        
-        var personas = leerExcel.listar(builder.toString());
-
-        for (var p : personas) {
-            personaService.guardar((Persona)p);
-        }
-
-        return "redirect:/";
-    }
 
     @PostMapping("/guardar")
     public String guardar(@Valid Persona persona, Errors errores){

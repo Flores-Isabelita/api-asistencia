@@ -16,4 +16,7 @@ public interface AsistenciaDao extends JpaRepository<Asistencia, Long> {
     public List<Asistencia> findAll(String palabraClave);
 
     Asistencia findByPersonaAndFecha(Persona persona, String fecha);
+
+    @Query("SELECT a.observacion, COUNT(a.observacion) FROM Asistencia a WHERE a.fecha = CURRENT_DATE GROUP BY a.observacion")
+    List<Object[]> findObservacionesDia();
 }

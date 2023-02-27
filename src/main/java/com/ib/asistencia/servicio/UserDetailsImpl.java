@@ -1,4 +1,4 @@
-package com.ib.asistencia.security;
+package com.ib.asistencia.servicio;
 
 import com.ib.asistencia.domain.Usuario;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
@@ -51,5 +52,9 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getNombre(){
         return usuario.getNombre();
+    }
+
+    public List getRol(){
+        return usuario.getRoles();
     }
 }

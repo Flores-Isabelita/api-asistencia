@@ -3,12 +3,15 @@ package com.ib.asistencia.controller;
 import com.ib.asistencia.domain.Asistencia;
 import com.ib.asistencia.servicio.AsistenciaService;
 import com.ib.asistencia.servicio.PersonaService;
+import com.ib.asistencia.util.ActualLaborProceso;
 import com.ib.asistencia.util.EstadoAsistencia;
 import com.ib.asistencia.util.AsistenciaProceso;
+import com.ib.asistencia.util.ObservacionDia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -39,6 +42,11 @@ public class ApiAsistencia {
             return asistenciaService.guardar(asistencia);
         }
         return asistenciaService.guardar(asistencia);
+    }
+
+    @GetMapping("/observaciones")
+    public List<ObservacionDia> listarObservacionesDia(){
+        return asistenciaService.ObservacionesDia();
     }
 
 }

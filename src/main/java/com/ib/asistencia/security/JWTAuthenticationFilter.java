@@ -1,6 +1,7 @@
 package com.ib.asistencia.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ib.asistencia.servicio.UserDetailsImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -42,11 +43,22 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws IOException, ServletException {
 
        UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
-       String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
+       String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getRol(), userDetails.getUsername());
 
-       response.addHeader("Authorization", "Bearer " + token);
+
+        response.addHeader("Authorization", "Bearer " + token);
+
+        // Agregar el token como objeto JSON a la respuesta
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("{\"token\": \"" + token + "\"}");
+
+    }
+}
+
+/*
+     response.addHeader("Authorization", "Bearer " + token);
        response.getWriter().flush();
 
         super.successfulAuthentication(request, response, chain, authResult);
-    }
-}
+ */

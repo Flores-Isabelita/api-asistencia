@@ -7,7 +7,6 @@ import com.ib.asistencia.domain.Usuario;
 
 public interface UsuarioService {
 
-
     public List<Usuario> listarUsuarios();
 
     public Usuario encontrarUsuario(String id);

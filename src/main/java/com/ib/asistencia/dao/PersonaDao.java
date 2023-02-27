@@ -22,6 +22,9 @@ public interface PersonaDao extends JpaRepository<Persona, Long>{
             "GROUP BY p.proceso, p.labor")
     List<Object[]> countPeopleByProcesoAndLabor();
 
+    @Query("SELECT p FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) ORDER BY p.nombre")
+    public List<Persona> findAllByFechaActualizacionMasReciente();
 
+    public List<Persona> findAllByOrderByNombreAsc();
 
 }

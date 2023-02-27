@@ -1,7 +1,6 @@
 package com.ib.asistencia.servicio;
 
 import java.util.*;
-
 import com.ib.asistencia.dao.PersonaDao;
 import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.util.ActualLaborProceso;
@@ -21,7 +20,8 @@ public class PersonaServiceImpl implements PersonaService {
         if (palabraClave != null) {
             return personaDao.findAllByOrderByNombreAsc(palabraClave);
         }
-        return (List<Persona>) personaDao.findAll();
+
+        return (List<Persona>) personaDao.findAllByFechaActualizacionMasReciente();
     }
 
     @Override
@@ -32,6 +32,7 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional
     public Persona guardar(Persona persona) {
+
         return personaDao.save(persona);
     }
 

@@ -4,7 +4,6 @@ package com.ib.asistencia.controller;
 import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.servicio.PersonaService;
 import com.ib.asistencia.util.ActualLaborProceso;
-import com.ib.asistencia.util.LeerExcel;
 import com.ib.asistencia.util.LeerExcelPoi;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @CrossOrigin
 @RestController

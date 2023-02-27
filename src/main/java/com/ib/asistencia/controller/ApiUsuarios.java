@@ -1,6 +1,7 @@
 package com.ib.asistencia.controller;
 
 import com.ib.asistencia.domain.Usuario;
+import com.ib.asistencia.servicio.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class ApiUsuarios {
 
-    /*@Autowired
+    @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping("")
@@ -35,37 +36,6 @@ public class ApiUsuarios {
     @PostMapping("/eliminar")
     public void eliminar(@RequestBody Usuario usuario){
         usuarioService.eliminar(usuario);
-    }*/
-
-/*    @PostMapping("/usuarios")
-    public Usuario login(@RequestParam("login") String username, @RequestParam("password") String pwd) {
-
-        String token = getJWTToken(username);
-        Usuario usuario = new Usuario();
-        usuario.setUsername(username);
-        usuario.setToken(token);
-        return usuario;
     }
-
-    private String getJWTToken(String username) {
-        String secretKey = "mySecretKey";
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER");
-
-        String token = Jwts
-                .builder()
-                .setId("softtekJWT")
-                .setSubject(username)
-                .claim("authorities",
-                        grantedAuthorities.stream()
-                                .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList()))
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 600000))
-                .signWith(SignatureAlgorithm.HS512,
-                        secretKey.getBytes()).compact();
-
-        return "Bearer " + token;
-    }*/
 
 }

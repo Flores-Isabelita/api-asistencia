@@ -2,6 +2,7 @@ package com.ib.asistencia.servicio;
 
 import com.ib.asistencia.domain.Asistencia;
 import com.ib.asistencia.domain.Persona;
+import com.ib.asistencia.util.ObservacionDia;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -16,6 +17,6 @@ public interface AsistenciaService {
 
     public Asistencia buscarPorIdEmpresaAndFecha(Persona persona, String fecha);
 
-
+    public List<ObservacionDia> ObservacionesDia();
 
 }
