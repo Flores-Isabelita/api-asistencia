@@ -1,9 +1,12 @@
 package com.ib.asistencia.servicio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import com.ib.asistencia.dao.PersonaDao;
 import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.util.ActualLaborProceso;
+import com.ib.asistencia.util.PersonasAusentes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +16,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Autowired
     private PersonaDao personaDao;
-    
+
     @Override
     @Transactional(readOnly = true)
     public List<Persona> listarPersonas(String palabraClave) {
@@ -60,6 +63,28 @@ public class PersonaServiceImpl implements PersonaService {
             procesoLabores.add(new ActualLaborProceso(entry.getKey(), entry.getValue()));
         }
         return procesoLabores;
+    }
+
+    @Override
+    public List<Map<String, Object>> listarPersonasAusentesHoy() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String fechaActual = dateFormat.format(date);
+        List<Persona> personasAusentes = personaDao.findAllByAsistenciasFechaAndAsistenciasEstado(fechaActual, "0");
+        List<Map<String, Object>> personasConAsistenciaFiltrada = new ArrayList<Map<String, Object>>();
+        for (Persona persona : personasAusentes) {
+            Map<String, Object> personaFiltrada = new HashMap<>();
+            personaFiltrada.put("idEmpresa", persona.getIdEmpresa());
+            personaFiltrada.put("nombre", persona.getNombre());
+            personaFiltrada.put("cedula", persona.getCedula());
+            personaFiltrada.put("celular", persona.getCelular());
+            personaFiltrada.put("proceso", persona.getProceso());
+            personaFiltrada.put("labor", persona.getLabor());
+            personasConAsistenciaFiltrada.add(personaFiltrada);
+        }
+
+
+        return personasConAsistenciaFiltrada;
     }
 
 }

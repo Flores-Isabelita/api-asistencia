@@ -27,4 +27,6 @@ public interface PersonaDao extends JpaRepository<Persona, Long>{
 
     public List<Persona> findAllByOrderByNombreAsc();
 
+    public List<Persona> findAllByAsistenciasFechaAndAsistenciasEstado(String fecha, String estado);
+
 }
