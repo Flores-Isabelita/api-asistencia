@@ -20,20 +20,21 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<Rol> roles = new ArrayList<>(); // Crear una lista vacía
-        Rol admin = new Rol("ADMIN"); // Crear un objeto de la clase Rol con el nombre "ADMIN"
-        roles.add(admin);
-        Usuario usuario = new Usuario();
-        usuario.setEmail("admin");
-        usuario.setPassword("admin");
-        usuario.setNombre("admin");
-        usuario.setRoles(roles);
+        try {
+            List<Rol> roles = new ArrayList<>(); // Crear una lista vacía
+            Rol admin = new Rol("ADMIN"); // Crear un objeto de la clase Rol con el nombre "ADMIN"
+            roles.add(admin);
+            Usuario usuario = new Usuario();
+            usuario.setEmail("admin");
+            usuario.setPassword("admin");
+            usuario.setNombre("admin");
+            usuario.setRoles(roles);
 
-        // Agrega aquí el código para cargar los datos iniciales en la base de datos
-        usuarioService.guardar(usuario);
-
-
+            // Agrega aquí el código para cargar los datos iniciales en la base de datos
+            usuarioService.guardar(usuario);
+        } catch (Exception e) {
+            System.out.println("El usaurio admin no se creo " + e.getMessage());
+        }
 
     }
 }
-

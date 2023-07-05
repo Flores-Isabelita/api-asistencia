@@ -21,6 +21,7 @@ public class Usuario implements Serializable{
     private String nombre;
 
     @NotEmpty
+    @Column(unique=true)
     private String email;
 
     @NotEmpty
