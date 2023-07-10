@@ -25,7 +25,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/api/file")
 public class ApiFie {
 
     @Autowired

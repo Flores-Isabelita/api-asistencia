@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class ApiUsuarios {
 
     @Autowired
@@ -21,7 +21,7 @@ public class ApiUsuarios {
         var usuarios = usuarioService.listarUsuarios();
         return usuarios;
     }
-
+    
     @PostMapping("")
     public Usuario guardar(@RequestBody Usuario usuario){
         return usuarioService.guardar(usuario);

@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/asistencia")
+@RequestMapping("/api/asistencia")
 public class ApiAsistencia {
 
     @Autowired
