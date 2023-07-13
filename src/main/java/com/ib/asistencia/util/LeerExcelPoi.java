@@ -49,23 +49,23 @@ public class LeerExcelPoi {
                         idEmpresa = Integer.parseInt(value);
                         colum++;
                         break;
-                    case 7:
+                    case 8:
                         nombre = value;
                         colum++;
                         break;
-                    case 9:
+                    case 10:
                         cedula = value;
                         colum++;
                         break;
-                    case 24:
+                    case 25:
                         celular = value;
                         colum++;
                         break;
-                    case 42:
+                    case 43:
                         proceso = value;
                         colum++;
                         break;
-                    case 3:
+                    case 4:
                         labor = value;
                         colum++;
                         break;
