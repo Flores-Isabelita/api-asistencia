@@ -80,9 +80,9 @@ public class PersonaServiceImpl implements PersonaService {
             personaFiltrada.put("celular", persona.getCelular());
             personaFiltrada.put("proceso", persona.getProceso());
             personaFiltrada.put("labor", persona.getLabor());
+            personaFiltrada.put("observacion", persona.getUltimaAsistencia().getObservacion());
             personasConAsistenciaFiltrada.add(personaFiltrada);
         }
-
 
         return personasConAsistenciaFiltrada;
     }

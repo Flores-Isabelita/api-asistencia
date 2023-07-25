@@ -46,4 +46,13 @@ public class Persona implements Serializable {
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     private List<Asistencia> asistencias;
+
+    // Método para obtener la última asistencia
+    public Asistencia getUltimaAsistencia() {
+        if (asistencias != null && !asistencias.isEmpty()) {
+            return asistencias.get(asistencias.size() - 1);
+        }
+        return null; // Si no hay asistencias, devuelve null
+    }
+
 }

@@ -27,6 +27,7 @@ public class CrearExcelPoi {
         filaEncabezados.createCell(3).setCellValue("celular");
         filaEncabezados.createCell(4).setCellValue("proceso");
         filaEncabezados.createCell(5).setCellValue("labor");
+        filaEncabezados.createCell(6).setCellValue("observacion");
 
         // Escribir los datos de las personas en las filas
         int filaActual = 1;
@@ -38,6 +39,7 @@ public class CrearExcelPoi {
             filaPersona.createCell(3).setCellValue(persona.get("celular").toString());
             filaPersona.createCell(4).setCellValue(persona.get("proceso").toString());
             filaPersona.createCell(5).setCellValue(persona.get("labor").toString());
+            filaPersona.createCell(6).setCellValue(persona.get("observacion").toString());
         }
 
         // Escribir los datos en un arreglo de bytes

@@ -7,10 +7,12 @@ public class AsistenciaProceso {
     int presentes;
     int ausentes;
 
+    int pendientes;
+
     private Map<String, Integer> labor;
 
 
-    public AsistenciaProceso(String nombre, int presentes, int ausentes, Map<String, Integer> labor) {
+    public AsistenciaProceso(String nombre, int presentes, int ausentes, int pendientes, Map<String, Integer> labor) {
         this.nombre = nombre;
         this.presentes = presentes;
         this.ausentes = ausentes;
@@ -39,6 +41,14 @@ public class AsistenciaProceso {
 
     public void setAusentes(int ausentes) {
         this.ausentes = ausentes;
+    }
+
+    public int getPendientes() {
+        return pendientes;
+    }
+
+    public void setPendientes(int pendientes) {
+        this.pendientes = pendientes;
     }
 
     public Map<String, Integer> getLabor() {

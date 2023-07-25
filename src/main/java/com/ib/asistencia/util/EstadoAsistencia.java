@@ -18,55 +18,76 @@ public class EstadoAsistencia {
     public EstadoAsistencia(AsistenciaService asistenciaService, PersonaService personaService, String fecha) {
         this.asistenciaService = asistenciaService;
         this.personaService = personaService;
-        if (fecha != null){
+        if (fecha != null) {
             asistencias = asistenciaService.listarAsistencia(fecha);
-        }else {
+        } else {
             asistencias = asistenciaService.listarAsistencia("");
         }
         procesos = personaService.listarProcesos();
     }
 
     public ArrayList<AsistenciaProceso> obtener() {
-
         HashMap<String, AsistenciaProceso> estadoProcesos = new HashMap<>();
 
         for (String proceso : procesos) {
-            AsistenciaProceso obj = new AsistenciaProceso(proceso, 0, 0, new HashMap<>());
+            AsistenciaProceso obj = new AsistenciaProceso(proceso, 0, 0, 0, new HashMap<>());
             estadoProcesos.put(proceso, obj);
         }
 
-        for (Asistencia asistencia: asistencias)
-        {
+        for (Asistencia asistencia : asistencias) {
             var proceso = asistencia.getPersona().getProceso();
             var estado = asistencia.getEstado();
             var labor = asistencia.getPersona().getLabor();
 
-            for (AsistenciaProceso value: estadoProcesos.values()
-            ) {
-                if (proceso.equals(value.nombre)){
-                    if (estado.equals("1")){
-                        AsistenciaProceso obj = estadoProcesos.get(value.nombre);
-                        obj.presentes = (value.presentes) + 1;
-                        obj.ausentes = value.ausentes;
-                        if (obj.getLabor().containsKey(labor)) {
-                            obj.getLabor().put(labor, obj.getLabor().get(labor) + 1);
+            for (AsistenciaProceso value : estadoProcesos.values()) {
+                if (proceso.equals(value.nombre)) {
+                    if (estado.equals("1")) {
+                        value.presentes = value.presentes + 1;
+                        if (value.getLabor().containsKey(labor)) {
+                            value.getLabor().put(labor, value.getLabor().get(labor) + 1);
                         } else {
-                            obj.getLabor().put(labor, 1);
+                            value.getLabor().put(labor, 1);
                         }
-                        estadoProcesos.put(value.nombre, obj);
-                    }else {
-                        AsistenciaProceso obj = estadoProcesos.get(value.nombre);
-                        obj.presentes = value.presentes;
-                        obj.ausentes = (value.ausentes) + 1;
-                        estadoProcesos.put(value.nombre, obj);
+                    } else {
+                        value.ausentes = value.ausentes + 1;
                     }
                 }
             }
         }
 
-        ArrayList<AsistenciaProceso> listEstadoAsistenciaProcesos = new ArrayList<>(estadoProcesos.values());
+        // Obtener la lista de personas por proceso
+        List<ActualLaborProceso> personasPorProceso = personaService.listarExixtenciaPorProceso();
 
+        // Calcular la cantidad de personas pendientes por validar
+        for (ActualLaborProceso personaProceso : personasPorProceso) {
+            String proceso = personaProceso.getProceso();
+            int presentes = 0;
+            int ausentes = 0;
+
+            for (AsistenciaProceso value : estadoProcesos.values()) {
+                if (proceso.equals(value.nombre)) {
+                    presentes = value.presentes;
+                    ausentes = value.ausentes;
+                    break;
+                }
+            }
+
+            int total = 0;
+            for (Map.Entry<String, Integer> laborEntry : personaProceso.getLabor().entrySet()) {
+                total += laborEntry.getValue();
+            }
+
+            int pendientes = total - (presentes + ausentes);
+
+            for (AsistenciaProceso value : estadoProcesos.values()) {
+                if (proceso.equals(value.nombre)) {
+                    value.pendientes = pendientes;
+                    break;
+                }
+            }
+        }
+
+        ArrayList<AsistenciaProceso> listEstadoAsistenciaProcesos = new ArrayList<>(estadoProcesos.values());
         return listEstadoAsistenciaProcesos;
     }
 }
-
