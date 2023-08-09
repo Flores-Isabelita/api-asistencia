@@ -47,7 +47,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public List<ActualLaborProceso> listarExixtenciaPorProceso() {
-        List<Object[]> result = personaDao.countPeopleByProcesoAndLabor();
+        List<Object[]> result = personaDao.countPeopleByProcesoAndLaborWithMostRecentUpdate();
         Map<String, Map<String, Integer>> map = new HashMap<>();
         for (Object[] row : result) {
             String proceso = (String) row[0];

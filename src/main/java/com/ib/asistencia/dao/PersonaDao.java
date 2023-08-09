@@ -17,10 +17,17 @@ public interface PersonaDao extends JpaRepository<Persona, Long>{
     @Query("SELECT DISTINCT p.proceso FROM Persona p")
     List<String> findDistinctProcesos();
 
-    @Query("SELECT p.proceso, p.labor, count(p) " +
+ /*   @Query("SELECT p.proceso, p.labor, count(p) " +
             "FROM Persona p " +
             "GROUP BY p.proceso, p.labor")
-    List<Object[]> countPeopleByProcesoAndLabor();
+    List<Object[]> countPeopleByProcesoAndLabor();*/
+
+    @Query("SELECT p.proceso, p.labor, count(p) " +
+            "FROM Persona p " +
+            "WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) " +
+            "GROUP BY p.proceso, p.labor")
+    List<Object[]> countPeopleByProcesoAndLaborWithMostRecentUpdate();
+
 
     @Query("SELECT p FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) ORDER BY p.nombre")
     public List<Persona> findAllByFechaActualizacionMasReciente();

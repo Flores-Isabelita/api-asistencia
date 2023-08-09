@@ -2,9 +2,11 @@ package com.ib.asistencia.util;
 
 import com.ib.asistencia.domain.Persona;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.xssf.usermodel.*;
+
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -21,16 +23,36 @@ public class CrearExcelPoi {
 
         // Crear una fila para los encabezados
         XSSFRow filaEncabezados = hoja.createRow(0);
-        filaEncabezados.createCell(0).setCellValue("idEmpresa");
-        filaEncabezados.createCell(1).setCellValue("nombre");
-        filaEncabezados.createCell(2).setCellValue("cedula");
-        filaEncabezados.createCell(3).setCellValue("celular");
-        filaEncabezados.createCell(4).setCellValue("proceso");
-        filaEncabezados.createCell(5).setCellValue("labor");
-        filaEncabezados.createCell(6).setCellValue("observacion");
+        filaEncabezados.createCell(0).setCellValue("ID");
+        filaEncabezados.createCell(1).setCellValue("NOMBRE");
+        filaEncabezados.createCell(2).setCellValue("CEDULA");
+        filaEncabezados.createCell(3).setCellValue("CELULAR");
+        filaEncabezados.createCell(4).setCellValue("PROCESO");
+        filaEncabezados.createCell(5).setCellValue("LABOR");
+        filaEncabezados.createCell(6).setCellValue("OBSERVACION");
+
+        // Aplicar formato a los encabezados
+        CellStyle estiloEncabezados = libro.createCellStyle();
+        Font fuente = libro.createFont();
+        fuente.setBold(true);
+        estiloEncabezados.setFont(fuente);
+        estiloEncabezados.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+        estiloEncabezados.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        estiloEncabezados.setBorderBottom(BorderStyle.THIN);
+        estiloEncabezados.setBorderTop(BorderStyle.THIN);
+        estiloEncabezados.setBorderLeft(BorderStyle.THIN);
+        estiloEncabezados.setBorderRight(BorderStyle.THIN);
+        for (Cell celda : filaEncabezados) {
+            celda.setCellStyle(estiloEncabezados);
+        }
 
         // Escribir los datos de las personas en las filas
         int filaActual = 1;
+        CellStyle estiloCeldas = libro.createCellStyle();
+        estiloCeldas.setBorderBottom(BorderStyle.THIN);
+        estiloCeldas.setBorderTop(BorderStyle.THIN);
+        estiloCeldas.setBorderLeft(BorderStyle.THIN);
+        estiloCeldas.setBorderRight(BorderStyle.THIN);
         for (Map<String, Object> persona : personasConAsistenciaFiltrada) {
             XSSFRow filaPersona = hoja.createRow(filaActual++);
             filaPersona.createCell(0).setCellValue(persona.get("idEmpresa").toString());
@@ -40,7 +62,21 @@ public class CrearExcelPoi {
             filaPersona.createCell(4).setCellValue(persona.get("proceso").toString());
             filaPersona.createCell(5).setCellValue(persona.get("labor").toString());
             filaPersona.createCell(6).setCellValue(persona.get("observacion").toString());
+
+            // Aplicar formato a las celdas de datos
+            for (Cell celda : filaPersona) {
+                celda.setCellStyle(estiloCeldas);
+            }
         }
+
+        // Ajustar el ancho de las columnas
+        hoja.autoSizeColumn(0);
+        hoja.autoSizeColumn(1);
+        hoja.autoSizeColumn(2);
+        hoja.autoSizeColumn(3);
+        hoja.autoSizeColumn(4);
+        hoja.autoSizeColumn(5);
+        hoja.autoSizeColumn(6);
 
         // Escribir los datos en un arreglo de bytes
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
