@@ -2,6 +2,7 @@ package com.ib.asistencia.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import javax.persistence.*;
@@ -32,7 +33,7 @@ public class Asistencia implements Serializable {
     //@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_empresa")
-    @JsonIdentityReference(alwaysAsId=true)
     @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+    @JsonIgnoreProperties({"asistencias"})
     private Persona persona;
 }

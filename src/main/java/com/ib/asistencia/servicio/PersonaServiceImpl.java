@@ -75,6 +75,7 @@ public class PersonaServiceImpl implements PersonaService {
         for (Persona persona : personasAusentes) {
             Map<String, Object> personaFiltrada = new HashMap<>();
             personaFiltrada.put("idEmpresa", persona.getIdEmpresa());
+            personaFiltrada.put("turno", persona.getTurno());
             personaFiltrada.put("nombre", persona.getNombre());
             personaFiltrada.put("cedula", persona.getCedula());
             personaFiltrada.put("celular", persona.getCelular());

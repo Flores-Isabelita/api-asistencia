@@ -19,6 +19,10 @@ public class Persona implements Serializable {
     private Long idEmpresa;
 
     @NotEmpty
+    @Column(name = "turno")
+    private String turno;
+
+    @NotEmpty
     @Column(name = "nombre")
     private String nombre;
 

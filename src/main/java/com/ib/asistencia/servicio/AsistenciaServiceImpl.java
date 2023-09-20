@@ -7,11 +7,8 @@ import com.ib.asistencia.util.ObservacionDia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class AsistenciaServiceImpl implements AsistenciaService{
@@ -23,7 +20,7 @@ public class AsistenciaServiceImpl implements AsistenciaService{
     @Override
     public List<Asistencia> listarAsistencia(String fecha) {
         System.out.println(fecha);
-        return (List<Asistencia>) asistenciaDao.findAll(fecha);
+        return (List<Asistencia>) asistenciaDao.findAllByFecha(fecha);
     }
 
     @Override

@@ -17,6 +17,7 @@ public class LeerExcelPoi {
         public List listar(String ruta) throws IOException {
 
         int idEmpresa = 0;
+        String turno = "";
         String nombre = "";
         String cedula = "";
         String celular = "";
@@ -35,7 +36,7 @@ public class LeerExcelPoi {
         sheet.getTopRow();
 
         //Recorrer el fichero de Excel
-        var iRow = 1;
+        var iRow = 3;
         Row row = sheet.getRow(iRow); //En qué fila empezar ya dependerá también de si tenemos, por ejemplo, el título de cada columna en la primera fila
         while(row!=null)
         {
@@ -49,24 +50,28 @@ public class LeerExcelPoi {
                         idEmpresa = Integer.parseInt(value);
                         colum++;
                         break;
-                    case 8:
+                    case 1:
+                        turno = value;
+                        colum++;
+                        break;
+                    case 5:
+                        labor = value;
+                        colum++;
+                        break;
+                    case 9:
                         nombre = value;
                         colum++;
                         break;
-                    case 10:
+                    case 11:
                         cedula = value;
                         colum++;
                         break;
-                    case 25:
+                    case 26:
                         celular = value;
                         colum++;
                         break;
-                    case 43:
+                    case 44:
                         proceso = value;
-                        colum++;
-                        break;
-                    case 4:
-                        labor = value;
                         colum++;
                         break;
                     default:
@@ -77,6 +82,7 @@ public class LeerExcelPoi {
 
             Persona persona = new Persona();
             persona.setIdEmpresa((long) idEmpresa);
+            persona.setTurno(turno);
             persona.setNombre(nombre);
             persona.setCedula(cedula);
             persona.setCelular(celular);
