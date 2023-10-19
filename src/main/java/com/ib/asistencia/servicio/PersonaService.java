@@ -7,6 +7,8 @@ import com.ib.asistencia.domain.Persona;
 import com.ib.asistencia.util.ActualLaborProceso;
 
 public interface PersonaService {
+
+    public Map<String, Long> obtenerCantidadPersonasPorTurnos() throws Exception;
     
     public List<Persona> listarPersonas(String palabraClave);
 

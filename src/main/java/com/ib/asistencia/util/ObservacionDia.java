@@ -7,6 +7,8 @@ public class ObservacionDia {
     private String observacion;
     private Long cantidad;
 
+    private String turno;
+
     public ObservacionDia() {
     }
 
@@ -25,4 +27,14 @@ public class ObservacionDia {
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
+
+public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+
 }

@@ -71,7 +71,7 @@ public class ApiFie {
         // Configurar la respuesta para descargar el archivo de Excel
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
-        headers.setContentDisposition(ContentDisposition.attachment().filename("personas-con-asistencia-filtrada.xlsx").build());
+        headers.setContentDisposition(ContentDisposition.attachment().filename("Persnas-Ausentes.xlsx").build());
 
         return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
     }

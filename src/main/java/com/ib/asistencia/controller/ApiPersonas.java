@@ -32,6 +32,11 @@ public class ApiPersonas {
         return (ArrayList<Persona>) personaService.listarPersonas(palabraClave);
     }
 
+    @GetMapping("/turno")
+    public java.util.Map<String, Long> listarPersonasPorTurno() throws Exception {
+        return  personaService.obtenerCantidadPersonasPorTurnos();
+    }
+
     @PutMapping("{idPersona}")
     Persona upDatePerson(@PathVariable String idPersona, @RequestBody @NotNull Persona persona){
         Persona personaFrontDb = personaService.encontrarPersona(idPersona);

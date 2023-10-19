@@ -17,12 +17,26 @@ public class PersonaServiceImpl implements PersonaService {
     @Autowired
     private PersonaDao personaDao;
 
+    public Map<String, Long> obtenerCantidadPersonasPorTurnos() {
+        Long cantidadPersonasTurno1 = personaDao.countByFechaActualizacionMasRecienteTurno1();
+        Long cantidadPersonasTurno2 = personaDao.countByFechaActualizacionMasRecienteTurno2();
+        Long cantidadPersonasIB2 = personaDao.countByFechaActualizacionMasRecienteIB2();
+
+        Map<String, Long> cantidades = new HashMap<>();
+        cantidades.put("turno1", cantidadPersonasTurno1);
+        cantidades.put("turno2", cantidadPersonasTurno2);
+        cantidades.put("ib2", cantidadPersonasIB2);
+
+        return cantidades;
+    }
+
     @Override
     @Transactional(readOnly = true)
     public List<Persona> listarPersonas(String palabraClave) {
         if (palabraClave != null) {
             return personaDao.findAllByOrderByNombreAsc(palabraClave);
         }
+
 
         return (List<Persona>) personaDao.findAllByFechaActualizacionMasReciente();
     }
@@ -67,10 +81,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public List<Map<String, Object>> listarPersonasAusentesHoy() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        String fechaActual = dateFormat.format(date);
-        List<Persona> personasAusentes = personaDao.findAllByAsistenciasFechaAndAsistenciasEstado(fechaActual, "0");
+        List<Persona> personasAusentes = personaDao.findAllByAsistenciasFechaAndAsistenciasEstado();
         List<Map<String, Object>> personasConAsistenciaFiltrada = new ArrayList<Map<String, Object>>();
         for (Persona persona : personasAusentes) {
             Map<String, Object> personaFiltrada = new HashMap<>();

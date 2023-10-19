@@ -34,16 +34,15 @@ public class AsistenciaServiceImpl implements AsistenciaService{
     }
 
     public List<ObservacionDia> ObservacionesDia() {
-        List<Object[]> result = asistenciaDao.findObservacionesDia();
+        List<Object[]> result = asistenciaDao.findObservacionesDiaPorTurno();
         List<ObservacionDia> observacionesDia = new ArrayList<>();
         for (Object[] obj : result) {
             ObservacionDia obs = new ObservacionDia();
-            obs.setObservacion((String) obj[0]);
-            obs.setCantidad((Long) obj[1]);
+            obs.setTurno((String) obj[0]); // Asumiendo que el turno es el primer elemento en el resultado.
+            obs.setObservacion((String) obj[1]);
+            obs.setCantidad((Long) obj[2]); // El tercer elemento en el resultado.
             observacionesDia.add(obs);
         }
         return observacionesDia;
     }
-
-
 }

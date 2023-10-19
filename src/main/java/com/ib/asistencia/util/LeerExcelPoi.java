@@ -14,8 +14,7 @@ import java.util.List;
 public class LeerExcelPoi {
 
     //public static void main(String[] args) throws IOException {
-        public List listar(String ruta) throws IOException {
-
+    public List<Persona> listar(String ruta) {
         int idEmpresa = 0;
         String turno = "";
         String nombre = "";
@@ -25,79 +24,84 @@ public class LeerExcelPoi {
         String labor = "";
         LocalDate fechaActual = LocalDate.now();
         String fechaEnFormato = fechaActual.toString();
-
-        List<Persona> Personas = new ArrayList<Persona>();
-
+        List<Persona> personas = new ArrayList<>();
         //Abrir fichero de Excel
-        File f = new File(ruta);
-        InputStream inp = new FileInputStream(f);
-        Workbook wb = WorkbookFactory.create(inp);
-        Sheet sheet = wb.getSheetAt(0);
-        sheet.getTopRow();
+        try (FileInputStream inp = new FileInputStream(new File(ruta));
+             Workbook wb = WorkbookFactory.create(inp)) {
+            Sheet sheet = wb.getSheetAt(0);
+            //Recorrer el fichero de Excel para obtener los datos
+            int iRow = 3;
+            Row row = sheet.getRow(iRow);
+            while (row != null && row.getCell(0) != null) {
+                    int colum = 0;
+                while (colum < 50) {
+                    Cell cell = row.getCell(colum);
+                    String value = convertCellToString(cell);
 
-        //Recorrer el fichero de Excel
-        var iRow = 3;
-        Row row = sheet.getRow(iRow); //En qué fila empezar ya dependerá también de si tenemos, por ejemplo, el título de cada columna en la primera fila
-        while(row!=null)
-        {
-            int colum = 0;
-            while (colum<50) {
-                Cell cell = row.getCell(colum);
-                String value = convertCellToString(cell);
-
-                switch (colum) {
-                    case 0:
-                        idEmpresa = Integer.parseInt(value);
-                        colum++;
-                        break;
-                    case 1:
-                        turno = value;
-                        colum++;
-                        break;
-                    case 5:
-                        labor = value;
-                        colum++;
-                        break;
-                    case 9:
-                        nombre = value;
-                        colum++;
-                        break;
-                    case 11:
-                        cedula = value;
-                        colum++;
-                        break;
-                    case 26:
-                        celular = value;
-                        colum++;
-                        break;
-                    case 44:
-                        proceso = value;
-                        colum++;
-                        break;
-                    default:
-                        colum++;
-                        break;
+                    switch (colum) {
+                        case 0:
+                            idEmpresa = Integer.parseInt(value);
+                            colum++;
+                            break;
+                        case 1:
+                            turno = value;
+                            colum++;
+                            break;
+                        case 5:
+                            labor = value;
+                            colum++;
+                            break;
+                        case 9:
+                            nombre = value;
+                            colum++;
+                            break;
+                        case 11:
+                            cedula = value;
+                            colum++;
+                            break;
+                        case 26:
+                            celular = value;
+                            colum++;
+                            break;
+                        case 44:
+                            proceso = value;
+                            colum++;
+                            break;
+                        default:
+                            colum++;
+                            break;
+                    }
                 }
+
+                Persona persona = new Persona();
+                persona.setIdEmpresa((long) idEmpresa);
+                persona.setTurno(turno);
+                persona.setNombre(nombre);
+                persona.setCedula(cedula);
+                persona.setCelular(celular);
+                persona.setProceso(proceso);
+                persona.setLabor(labor);
+                persona.setFechaActualizacion(fechaEnFormato);
+
+                personas.add(persona);
+                iRow++;
+                row = sheet.getRow(iRow);
             }
-
-            Persona persona = new Persona();
-            persona.setIdEmpresa((long) idEmpresa);
-            persona.setTurno(turno);
-            persona.setNombre(nombre);
-            persona.setCedula(cedula);
-            persona.setCelular(celular);
-            persona.setProceso(proceso);
-            persona.setLabor(labor);
-            persona.setFechaActualizacion(fechaEnFormato);
-
-            Personas.add(persona);
-            iRow++;
-            row = sheet.getRow(iRow);
+        } catch (IOException e) {
+            // Manejo de la excepción de E/S
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Manejo de otras excepciones
+            e.printStackTrace();
         }
-        return Personas;
+
+        return personas;
     }
 
     public static String convertCellToString(Cell cell) {
+        if (cell == null) {
+            return "null";
+        }
         CellType cellType;
         String cellValue = "";
         cellType = cell.getCellType();

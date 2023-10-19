@@ -36,4 +36,32 @@ public interface PersonaDao extends JpaRepository<Persona, Long>{
 
     public List<Persona> findAllByAsistenciasFechaAndAsistenciasEstado(String fecha, String estado);
 
+    @Query("SELECT p FROM Persona p JOIN p.asistencias a " +
+            "WHERE a.fecha = CURRENT_DATE AND a.estado = '0'")
+    public List<Persona> findAllByAsistenciasFechaAndAsistenciasEstado();
+
+    // Consulta para obtener personas por turno 1
+    @Query("SELECT p FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) AND p.turno = '1' ORDER BY p.nombre")
+    public List<Persona> findAllByFechaActualizacionMasRecienteTurno1();
+
+    // Consulta para obtener personas por turno 2
+    @Query("SELECT p FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) AND p.turno = '2' ORDER BY p.nombre")
+    public List<Persona> findAllByFechaActualizacionMasRecienteTurno2();
+
+    // Consulta para obtener personas por turno IB2
+    @Query("SELECT p FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) AND p.turno = 'IB2' ORDER BY p.nombre")
+    public List<Persona> findAllByFechaActualizacionMasRecienteIB2();
+
+    @Query("SELECT COUNT(p) FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) AND p.turno = '1'")
+    Long countByFechaActualizacionMasRecienteTurno1();
+
+    // Consulta para obtener la cantidad de personas por turno 2
+    @Query("SELECT COUNT(p) FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) AND p.turno = '2'")
+    Long countByFechaActualizacionMasRecienteTurno2();
+
+    // Consulta para obtener la cantidad de personas por turno IB2
+    @Query("SELECT COUNT(p) FROM Persona p WHERE p.fechaActualizacion = (SELECT MAX(p2.fechaActualizacion) FROM Persona p2) AND p.turno = 'IB2 '")
+    Long countByFechaActualizacionMasRecienteIB2();
+
+
 }
